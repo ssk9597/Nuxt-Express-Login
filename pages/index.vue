@@ -5,13 +5,14 @@
                 <div class="w-9/12 border bg-white">
                     <div class="my-16 text-center">
                         <h2 class="text-4xl font-bold">新規登録</h2>
-                        <form class="mt-12">
+                        <form @submit.prevent class="mt-12">
                             <div class="mb-3">
                                 <input
                                     type="text"
                                     placeholder="ユーザー名"
                                     name="username"
                                     class="text-xl w-7/12 p-3 border rounded"
+                                    v-model="user"
                                 />
                             </div>
                             <div class="mb-3">
@@ -20,6 +21,7 @@
                                     placeholder="you@gmail.com"
                                     name="email"
                                     class="text-xl w-7/12 p-3 border rounded"
+                                    v-model="email"
                                 />
                             </div>
                             <div class="mb-3">
@@ -28,14 +30,7 @@
                                     placeholder="パスワード(7文字以上)"
                                     name="password"
                                     class="text-xl w-7/12 p-3 border rounded"
-                                />
-                            </div>
-                            <div class="mb-8">
-                                <input
-                                    type="password"
-                                    placeholder="パスワードの確認"
-                                    name="confirmPassword"
-                                    class="text-xl w-7/12 p-3 border rounded"
+                                    v-model="password"
                                 />
                             </div>
                             <button
@@ -56,9 +51,32 @@
 import axios from 'axios';
 
 export default {
+    data() {
+        return {
+            user: '',
+            email: '',
+            password: '',
+        };
+    },
     methods: {
+        // createRegister() {
+        //     console.log('送信されました');
+        //     this.$router.push('users');
+        // },
         async createRegister() {
-            await axios.post('/api/register').then(res => console.log(res));
+            await axios
+                .post('/api/register', {
+                    user: this.user,
+                    email: this.email,
+                    password: this.password,
+                })
+                .then(res => {
+                    this.$router.push('users');
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         },
     },
 };
