@@ -1,0 +1,80 @@
+<template>
+    <div class="flex flex-col h-screen">
+        <div class="bg-gray-100 flex-auto">
+            <div class="flex justify-center mt-20">
+                <div class="w-9/12 border bg-white">
+                    <div class="my-16 text-center">
+                        <h2 class="text-4xl font-bold">ログイン</h2>
+                        <form @submit.prevent class="mt-12">
+                            <div class="mb-3">
+                                <input
+                                    type="email"
+                                    placeholder="you@gmail.com"
+                                    name="email"
+                                    class="text-xl w-7/12 p-3 border rounded"
+                                    v-model="email"
+                                />
+                            </div>
+                            <div class="mb-5">
+                                <input
+                                    type="password"
+                                    placeholder="パスワード"
+                                    name="password"
+                                    class="text-xl w-7/12 p-3 border rounded"
+                                    v-model="password"
+                                />
+                            </div>
+                            <div class="mb-5">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox" />
+                                    <span class="ml-2 text-sm">ログインデータを保存する</span>
+                                </label>
+                            </div>
+                            <button
+                                type="submit"
+                                class="mb-3 text-xl w-4/12 bg-blue-800 text-white py-2 rounded hover:opacity-75"
+                                @click="login()"
+                            >
+                                ログイン
+                            </button>
+                            <div class="text-sm hover:text-blue-800">
+                                <a href="/register"> 新規登録はこちらから </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+        };
+    },
+    methods: {
+        async login() {
+            await axios
+                .post('/api/login', {
+                    email: this.email,
+                    password: this.password,
+                })
+                .then((res) => {
+                    this.$router.push('/');
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+    },
+};
+</script>
+
+<style>
+</style>

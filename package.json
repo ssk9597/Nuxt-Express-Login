@@ -15,7 +15,9 @@
     "dependencies": {
         "@nuxt/http": "latest",
         "axios": "^0.21.0",
+        "bcrypt": "^5.0.0",
         "express-validator": "^6.8.0",
+        "mysql": "^2.18.1",
         "nuxt": "latest"
     },
     "devDependencies": {
