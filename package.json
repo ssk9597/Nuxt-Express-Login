@@ -18,7 +18,8 @@
         "bcrypt": "^5.0.0",
         "express-validator": "^6.8.0",
         "mysql": "^2.18.1",
-        "nuxt": "latest"
+        "nuxt": "latest",
+        "vee-validate": "^3.4.5"
     },
     "devDependencies": {
         "@nuxtjs/eslint-config": "^3.0.0",

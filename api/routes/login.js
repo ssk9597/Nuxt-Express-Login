@@ -19,7 +19,7 @@ router.post('/login', (req, res) => {
             return res.status(400).send({ error: err.message });
         }
         if (!user) {
-            return res.send({ message: 'Eメールかパスワードが間違っています' });
+            return res.send({ message: 'メールアドレスかパスワードが間違っています' });
         }
 
         const userPassword = user[0].password;
@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
                 return res.status(400).send({ error: err.message });
             }
             if (!result) {
-                return res.send({ message: 'Eメールかパスワードが間違っています' });
+                return res.send({ message: 'メールアドレスかパスワードが間違っています' });
             }
             return res.send({ message: 'パスワードが正しいです！' });
         });
