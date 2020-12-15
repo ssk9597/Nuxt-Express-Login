@@ -22,14 +22,11 @@ router.post('/login', (req, res) => {
             return res.send({ message: 'メールアドレスかパスワードが間違っています' });
         }
 
+        //ハッシュ化されたパスワード
         const userPassword = user[0].password;
-
-        console.log(req.body.password);
-        console.log(userPassword);
 
         //ハッシュ値の比較
         bcrypt.compare(req.body.password, userPassword, (err, result) => {
-            console.log(result);
             if (err) {
                 return res.status(400).send({ error: err.message });
             }
