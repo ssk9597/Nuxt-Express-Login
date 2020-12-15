@@ -66,18 +66,18 @@ export default {
                     email: this.email,
                     password: this.password,
                 })
-                .then(res => {
+                .then((res) => {
                     console.log(res.data);
                     axios
                         .post('/api/login', {
                             email: this.email,
-                            password: res.data,
+                            password: this.password,
                         })
-                        .then(res => {
+                        .then((res) => {
                             this.$router.push('/');
                         });
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                 });
         },
